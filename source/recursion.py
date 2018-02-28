@@ -10,19 +10,18 @@ def factorial(n):
     # implement factorial_iterative and factorial_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return factorial_iterative(n)
-    return factorial_iterative(n)
+    return factorial_recursive(n)
 
 
 def factorial_iterative(n):
     factorial = 1
 
-    # Could start at range 2 because is not important
+    # Could start at range 2 because the nature of factorials both 1! and 0!
+    # are 1
     for count in range(1, n + 1):
         factorial *= count
 
     return factorial
-    # once implemented, change factorial (above) to call factorial_iterative
-    # to verify that your iterative implementation passes all tests
 
 
 def factorial_recursive(n):
@@ -31,7 +30,7 @@ def factorial_recursive(n):
         return 1
     # check if n is an integer larger than the base cases
     elif n > 1:
-        # call function recursively
+                            # Recursive call
         return n * factorial_recursive(n - 1)
 
 
