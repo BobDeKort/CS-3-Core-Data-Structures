@@ -4,15 +4,36 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
 
+    if find_index(text, pattern) != None:
+        return True
+    return False
 
-def find_index(text, pattern):
+def find_index(text, pattern, t_index=0, p_index=0):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+
+    if pattern == '':
+        return 0
+    # all characters in pattern are found, return the index a match first occurs
+    if (p_index == len(pattern)):
+        return t_index - len(pattern)
+    # reaches the end of text without matching any character
+    if (t_index == len(text)):
+        return None
+    # one character is matched, try matching the next character
+    if text[t_index] == pattern[p_index]:
+        return find_index(text, pattern, t_index + 1, p_index + 1)
+    # searching text and see if the first character in pattern matches a character in text
+    if p_index == 0:
+        return find_index(text, pattern, t_index + 1, 0)
+    # pattern partially matches text (Failed), reset to try matching pattern[0] again
+    else:
+        return find_index(text, pattern, t_index - p_index + 1, 0)
+
+    # extreme unit test: find_index('aaaaab', 'aaab') == 2
 
 
 def find_all_indexes(text, pattern):
@@ -21,6 +42,7 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    
 
 
 def test_string_algorithms(text, pattern):

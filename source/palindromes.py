@@ -19,8 +19,7 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # Has to be better way to clean text
-    text = text.replace(" ", "").replace("!", "").replace(",", "").replace("?", "").replace(".", "").replace("-", "").replace("'","")
-    text = text.lower()
+    text = text.replace(" ", "").replace("!", "").replace(",", "").replace("?", "").replace(".", "").replace("-", "").replace("'","").lower()
     left = 0
     right = len(text) - 1
 
@@ -34,14 +33,16 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # Has to be better way to clean text
-    text = text.replace(" ", "").replace("!", "").replace(",", "").replace("?", "").replace(".", "").replace("-", "").replace("'","")
-    text = text.lower()
+    # Replace is a very expencive operation as it has to iterate over the whole string each call
+    # Move 1 time clean up before the recursive function is called (def is_palindrome(text))(You would put this outside of the for loop in an iterative function)
+
+    text = text.replace(" ", "").replace("!", "").replace(",", "").replace("?", "").replace(".", "").replace("-", "").replace("'","").lower()
 
     if left == None and right == None:
         left = 0
         right = len(text) - 1
 
-    if right < left:
+    if right <= left:
         return True
     elif text[left] != text[right]:
         return False
