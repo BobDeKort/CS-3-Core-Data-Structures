@@ -30,7 +30,8 @@ class LinkedStack(object):
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(1) – Why? Prepending in a LinkedList is a constant time operation"""
         return self.list.prepend(item)
 
     def peek(self):
@@ -43,7 +44,10 @@ class LinkedStack(object):
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(1) – Why?
+        Since we have a reference to the HEAD of the LinkedList we can
+        return and delete it in constant time"""
         if self.is_empty():
             raise ValueError("Stack is empty")
         else:
@@ -80,7 +84,7 @@ class ArrayStack(object):
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? We can append to an Array in constant time"""
         self.list.append(item)
 
     def peek(self):
@@ -94,9 +98,11 @@ class ArrayStack(object):
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(1) – Why?
+        We can use the pop function of the List class in constant time because"""
         if self.is_empty():
-            raise ValueError("Stack is ")
+            raise ValueError("Stack is empty")
         return self.list.pop()
 
 

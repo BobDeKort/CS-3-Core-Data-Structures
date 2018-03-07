@@ -29,7 +29,8 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(1) – Why? We can append to a LinkedList in constant time"""
         return self.list.append(item)
 
     def front(self):
@@ -37,12 +38,13 @@ class LinkedQueue(object):
         or None if this queue is empty."""
         if self.is_empty():
             return None
-        return self.list.get_at_index(0)
+        return self.list.head.data
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(1) – Why? We can get the head of the linkedList in constant time"""
         if self.is_empty():
             raise ValueError("Queue is empty")
         else:
@@ -80,7 +82,7 @@ class ArrayQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? We can append to an Array in constant time"""
         return self.list.append(item)
 
     def front(self):
@@ -93,12 +95,13 @@ class ArrayQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time:
+        O(n) – Why?
+        This will take longer because we have to delete the front of array and
+        move every index back one"""
         if self.is_empty():
             raise ValueError("Queue is empty")
         return self.list.pop(0)
-
-
 
 # Implement LinkedQueue and ArrayQueue above, then change the assignment below
 # to use each of your Queue implementations to verify they each pass all tests
