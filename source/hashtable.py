@@ -57,9 +57,15 @@ class HashTable(object):
             all_items.extend(bucket.items())
         return all_items
 
+    # Override the build in len() function when used on the hashtable
+    def __len__(self):
+        return self.size
+
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
+        # b = # buckets, n = total amount of items in hashtable, l = load factor (n/b)
+        # O(b*l) => O(b*(n/b)) => O(n)
         # Count number of key-value entries in each of the buckets
         item_count = 0
         for bucket in self.buckets:
@@ -131,6 +137,8 @@ class HashTable(object):
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
             self.size -= 1
+            if self.load_factor() < 0.25:
+                self._resize(0)
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -147,18 +155,40 @@ class HashTable(object):
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
 
-        # Get list of key-value pairs in self
-        temp_list = self.items()
+        # DO NOT do this, self.buckets = new_hashTable.buckets using this
+        # # Get list of key-value pairs in self
+        # temp_list = self.items()
+        #
+        # # Create new hastable with the new size
+        # new_hashTable = HashTable(new_size)
+        #
+        # # Loop over all key-value pairs and add them to the new hashtable
+        # for item in temp_list:
+        #     new_hashTable.set(item[0], item[1])
+        #
+        # # Set self buckets to the new buckets
+        # self.buckets = new_hashTable.buckets
 
-        # Create new hastable with the new size
-        new_hashTable = HashTable(new_size)
 
-        # Loop over all key-value pairs and add them to the new hashtable
-        for item in temp_list:
-            new_hashTable.set(item[0], item[1])
+        # Pretty good
+        # new_buckets = [LinkedList() for i in range(new_size)]
+        #
+        # for bucket in self.buckets:
+        #     for key, value in bucket.items():
+        #         newKey = hash(key) % new_size
+        #         new_buckets[newKey].append((key, value))
+        # self.buckets = new_buckets
 
-        # Set self buckets to the new buckets
-        self.buckets = new_hashTable.buckets
+        # Very Good, DRY
+        old_entries = self.items()
+
+        # self.buckets = [LinkedList() for i in range(new_size)]
+        # self.size = 0
+        # init does the same stuff
+        self.__init__(int(new_size))
+
+        for key, value in old_entries:
+            self.set(key, value)
 
 
 def test_hash_table():
