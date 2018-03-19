@@ -1,1 +1,8 @@
-{}
+{
+  "binarytree_test.py::BinarySearchTreeTest::test_items_level_order_with_3_strings": true,
+  "binarytree_test.py::BinarySearchTreeTest::test_items_level_order_with_7_numbers": true,
+  "binarytree_test.py::BinarySearchTreeTest::test_search_with_3_items": true,
+  "binarytree_test.py::BinarySearchTreeTest::test_search_with_3_strings": true,
+  "binarytree_test.py::BinarySearchTreeTest::test_search_with_7_items": true,
+  "binarytree_test.py::BinarySearchTreeTest::test_search_with_7_strings": true
+}
