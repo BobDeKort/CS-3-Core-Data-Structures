@@ -28,7 +28,8 @@ class BinaryTreeNode(object):
         if self.is_leaf():
             return 0
 
-        left_height, right_height = 0, 0
+        left_height = 0
+        right_height = 0
         if self.left is not None:                       # Checks if left child has value
             left_height = self.left.height()        # Calculate node height
         if self.right is not None:                      # Checks if right child has value
