@@ -6,36 +6,87 @@ def is_sorted(items):
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check that all adjacent items are in order, return early if not
+    # List is sorted when it is empty or only has 1 item
+    if len(items) < 2:
+        return True
 
+    index = 0
+    while index < len(items) - 1:
+        # Check if the selected item is greater than the next one
+        if items[index] > items[index+1]:
+            # Return false, Not in sorted order
+            return False
+        index += 1
+
+    return True
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
+    0(n2)
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+    sorted = False
+    length = len(items) - 1
+
+    while not sorted:
+        # If we don't swap we know the list is sorted
+        sorted = True
+        for i in range(length):
+            # if the next index is smaller
+            if items[i] > items[i+1]:
+                # Swap the values
+                items[i], items[i+1] = items[i+1], items[i]
+                # Update swapped value to keep looping
+                sorted = False
+
+    return items
 
 
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
+    0(n2)
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+
+    for i in range(len(items)):
+        # Set the minimum value to the last sorted index
+        min_index = i
+        # Loop over the remaining un sorted items
+        for j in range(i+1, len(items)):
+            # To find the lowest value in the list
+            if items[min_index] > items[j]:
+                min_index = j
+        # Swap the new lowest value to the last sorted index + 1
+        items[i], items[min_index] = items[min_index], items[i]
+
+    return items
 
 
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
     TODO: Running time: ??? Why and under what conditions?
+    0(n2)
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
 
+    for i in range(1, len(items)):
+        # Item to be checked
+        current = items[i]
+        # Counter to loop backwards through sorted items
+        j = i - 1
+        # Checks if the start is reached or found the right position in the sorted list
+        while j >= 0 and items[j] > current :
+                # Move item 1 position to the right
+                items[j+1] = items[j]
+                # Update counter to move backwards
+                j -= 1
+
+        # Swap to the right position
+        items[j+1] = current
+
+    return items
 
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,

@@ -6,7 +6,7 @@ import unittest
 
 
 # Change this variable to the sort function you want to test
-sort = bubble_sort
+sort = insertion_sort
 
 
 class IsSortedTest(unittest.TestCase):
@@ -20,7 +20,6 @@ class IsSortedTest(unittest.TestCase):
         assert is_sorted([3, 5, 7]) is True
         # TODO: Write more positive test cases with assert is True statements
         # You'll need a lot more than this to test sorting algorithm robustness
-        # ...
 
     def test_is_sorted_on_unsorted_integers(self):
         # Negative test cases (counterexamples) with lists of unsorted integers

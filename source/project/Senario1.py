@@ -25,14 +25,14 @@ def check_single_phone_number_cost(routes_data, phone_number):
     if routes_data is None:
         routes_data = get_routes_data()
 
-    state_code = phone_number[0:5]
-    area_code = phone_number[5:8]
+    area_code = phone_number[0:5]
+    local_code = phone_number[5:8]
 
     # Check largest possible match first
-    if (state_code + area_code) in routes_data:
-        return routes_data[state_code+area_code]
-    elif state_code in routes_data:
-        return routes_data[state_code]
+    if (area_code + local_code) in routes_data:
+        return routes_data[area_code+local_code]
+    elif area_code in routes_data:
+        return routes_data[area_code]
     else:
         return 0
 
@@ -43,6 +43,8 @@ def main():
     # Senario 1
     routes_data = get_routes_data()
     print(check_single_phone_number_cost(routes_data, '+15124156620'))
+
+    # Senario 2
 
 if __name__ == '__main__':
     main()
